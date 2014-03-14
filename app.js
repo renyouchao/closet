@@ -29,6 +29,7 @@ app.use(express.compress());
 app.use(express.methodOverride());
 app.use(express.json());
 app.use(express.urlencoded());
+app.use(app.router);
 app.use(express.cookieParser('firstblood'));
 app.use(express.session({
         secret: 'password',
@@ -36,7 +37,6 @@ app.use(express.session({
                 client: redisClient
         })
 }));
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./config/routes')(app);
